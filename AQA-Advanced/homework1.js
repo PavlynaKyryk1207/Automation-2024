@@ -1,3 +1,2 @@
-TextDecoderStream
-Response
-test = 56 
+export const n = 1
+
