@@ -1,0 +1,20 @@
+name: Playwright tests on docker image
+on:
+  push:
+    branches:
+      - actions-playwright-docker
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.44.0-jammy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Add node
+        uses: actions/setup-node@v4
+      - name: Install dependecies
+        run: npm ci
+      - name: Run playwright test
+        run: npm run ui_tests_light
+        run: npm run ui_tests_light
