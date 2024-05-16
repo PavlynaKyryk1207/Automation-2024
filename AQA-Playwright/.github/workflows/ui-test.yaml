@@ -1,0 +1,24 @@
+name: UI tests
+on:
+  push:
+    branches:
+      - actions-playwright
+  pull_request:
+    branches:
+      - "actions-playwright"
+      - "!hitfix/*"
+      - "!main"
+jobs: 
+  test: 
+   runs-on: ubuntu-latest
+   steps: 
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Add node
+      uses: actions/setup-node@v4
+    - name: Install dependencies
+      run: npm ci
+    - name: Browser Chromium
+      run: npx playwright install chromium --with-deps
+    - name: Run playwright test
+      run: npm run ui_tests_light
